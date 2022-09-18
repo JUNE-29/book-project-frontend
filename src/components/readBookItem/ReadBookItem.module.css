@@ -1,0 +1,41 @@
+@value mainColor, colorWhite, colorGrey, colorWhiteGrey, colorBlack from '../../common/colors.css';
+
+.book {
+  list-style: none;
+  background-color: mainColor;
+  color: colorWhite;
+  font-size: 20px;
+  width: 550px;
+  padding: 20px;
+  border-radius: 45px 0px 0px 45px;
+}
+
+.book.thin {
+  height: 10px;
+  line-height: 10px;
+}
+
+.book.light {
+  height: 25px;
+  line-height: 25px;
+}
+
+.book.regular {
+  height: 40px;
+  line-height: 40px;
+}
+
+.book.medium {
+  height: 50px;
+  line-height: 50px;
+}
+
+.book.bold {
+  height: 60px;
+  line-height: 60px;
+}
+
+.book.second {
+  background-color: #7da48a;
+  margin-left: 30px;
+}

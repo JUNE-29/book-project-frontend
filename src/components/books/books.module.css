@@ -1,0 +1,30 @@
+@value mainColor, colorBlack from '../../common/colors.css';
+
+.books {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 800px;
+  margin-top: 45px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  color: mainColor;
+  margin-bottom: 30px;
+}
+
+.menu {
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+}
+
+.menu:hover {
+  border-bottom: 1px solid colorBlack;
+  color: colorBlack;
+}
+
+.bookBasket {
+  display: none;
+}

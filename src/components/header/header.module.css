@@ -1,0 +1,121 @@
+@value mainColor, colorWhite, colorGrey, colorWhiteGrey, colorBlack from '../../common/colors.css';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  margin: 15px;
+  width: 75px;
+}
+
+.nav {
+  display: flex;
+  border: solid 2px mainColor;
+  border-radius: 60px;
+  width: 500px;
+  height: 50px;
+  justify-content: space-around;
+  align-items: center;
+  margin: 15px;
+}
+
+.menu {
+  color: mainColor;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+}
+
+.menu:hover {
+  border-bottom: 1px solid mainColor;
+}
+
+.profile {
+  color: mainColor;
+  margin-right: 60px;
+}
+
+.userName {
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+}
+
+.userName:hover {
+  border-bottom: 1px solid mainColor;
+}
+
+.arrow {
+  width: 0.5em;
+  padding-left: 0.3em;
+  padding-bottom: 0.2em;
+  color: mainColor;
+}
+
+.downBox {
+  display: none;
+  position: absolute;
+  flex-direction: column;
+  background-color: colorWhite;
+  width: 120px;
+  border: solid 1px colorGrey;
+  right: 1em;
+  top: 3.5em;
+}
+
+.downMenu {
+  padding: 0.4rem;
+  cursor: pointer;
+}
+
+.downMenu:hover {
+  color: colorBlack;
+  background-color: colorWhiteGrey;
+}
+
+.hidden {
+  display: none;
+}
+
+.hiddenMenu {
+  display: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 62rem) {
+  .header {
+    flex-direction: column;
+  }
+  .nav {
+    background-color: mainColor;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    border: none;
+  }
+  .menu,
+  .hiddenMenu {
+    color: colorWhite;
+    width: 100%;
+    padding: 1rem;
+  }
+  .menu:hover {
+    background-color: #7da48a;
+  }
+
+  .hiddenMenu {
+    display: block;
+  }
+
+  .hiddenMenu:hover {
+    background-color: #7da48a;
+  }
+
+  .profile,
+  .downBox {
+    display: none;
+  }
+}
