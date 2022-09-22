@@ -1,4 +1,7 @@
 import React, { useRef } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "../navbar/navbar";
+import Search from "../search/search";
 import styles from "./header.module.css";
 
 const Header = (props) => {
@@ -17,14 +20,7 @@ const Header = (props) => {
   return (
     <header className={styles.header}>
       <img className={styles.logo} src="/images/logo.png" alt="logo" />
-      <nav className={styles.nav}>
-        <span className={styles.menu}>서적</span>
-        <span className={styles.menu}>감상문</span>
-        <span className={styles.menu}>필사함</span>
-        <span className={styles.menu}>검색</span>
-        <span className={styles.hiddenMenu}>회원 정보 변경</span>
-        <span className={styles.hiddenMenu}>로그아웃</span>
-      </nav>
+      <Navbar />
       <div className={styles.profile}>
         <span className={styles.userName} onClick={onClick}>
           사용자

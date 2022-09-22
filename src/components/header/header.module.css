@@ -25,6 +25,7 @@
 .menu {
   color: mainColor;
   border-bottom: 1px solid transparent;
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -96,6 +97,12 @@
     border-radius: 0;
     border: none;
   }
+
+  .profile,
+  .downBox {
+    display: none;
+  }
+
   .menu,
   .hiddenMenu {
     color: colorWhite;
@@ -112,10 +119,5 @@
 
   .hiddenMenu:hover {
     background-color: #7da48a;
-  }
-
-  .profile,
-  .downBox {
-    display: none;
   }
 }
