@@ -14,7 +14,7 @@ const ReadBooks = ({ books }) => {
       <div className={styles.booksBox}>
         <ul>
           {books.map((book) => (
-            <ReadBookItem key={book.isbn} book={book} />
+            <ReadBookItem key={book.bookId} book={book} />
           ))}
         </ul>
       </div>

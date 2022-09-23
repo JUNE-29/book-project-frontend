@@ -6,14 +6,16 @@ import Login from "./components/login/login";
 import Search from "./components/search/search";
 import Signup from "./components/signup/signup";
 
-function App({ authService, kakaoSearch }) {
+function App({ authService, kakaoSearch, backendAPI }) {
   return (
     <div className={styles.app}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />}></Route>
+          <Route path="/" element={<Login authService={authService} />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
-          <Route path="/books" element={<Books />}></Route>
+          <Route
+            path="/books"
+            element={<Books backendAPI={backendAPI} />}></Route>
           <Route
             path="/search"
             element={<Search kakaoSearch={kakaoSearch} />}></Route>

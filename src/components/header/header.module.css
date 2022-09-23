@@ -11,28 +11,6 @@
   width: 75px;
 }
 
-.nav {
-  display: flex;
-  border: solid 2px mainColor;
-  border-radius: 60px;
-  width: 500px;
-  height: 50px;
-  justify-content: space-around;
-  align-items: center;
-  margin: 15px;
-}
-
-.menu {
-  color: mainColor;
-  border-bottom: 1px solid transparent;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.menu:hover {
-  border-bottom: 1px solid mainColor;
-}
-
 .profile {
   color: mainColor;
   margin-right: 60px;
@@ -75,49 +53,13 @@
   background-color: colorWhiteGrey;
 }
 
-.hidden {
-  display: none;
-}
-
-.hiddenMenu {
-  display: none;
-  cursor: pointer;
-}
-
 @media screen and (max-width: 62rem) {
   .header {
     flex-direction: column;
-  }
-  .nav {
-    background-color: mainColor;
-    flex-direction: column;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-    border: none;
   }
 
   .profile,
   .downBox {
     display: none;
-  }
-
-  .menu,
-  .hiddenMenu {
-    color: colorWhite;
-    width: 100%;
-    padding: 1rem;
-  }
-  .menu:hover {
-    background-color: #7da48a;
-  }
-
-  .hiddenMenu {
-    display: block;
-  }
-
-  .hiddenMenu:hover {
-    background-color: #7da48a;
   }
 }
