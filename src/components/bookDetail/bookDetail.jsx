@@ -15,7 +15,7 @@ const BookDetail = () => {
       <span>{book.publisher}</span>
       <span>{book.datetime}</span>
       <p>{book.contents}</p>
-      <button>추가하기</button>
+      <button>서재에 담기</button>
     </>
   );
 };

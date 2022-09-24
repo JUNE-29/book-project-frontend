@@ -12,7 +12,6 @@ class AuthService {
       .then((response) => {
         if (response.data.token) {
           localStorage.setItem("ACCESS_TOKEN", response.data.token);
-          console.log(response.data.token);
         }
       })
       .catch((error) => {
@@ -20,6 +19,11 @@ class AuthService {
           window.location.href = "/";
         }
       });
+  }
+
+  logout() {
+    localStorage.removeItem("ACCESS_TOKEN");
+    return;
   }
 }
 

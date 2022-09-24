@@ -15,7 +15,9 @@ function App({ authService, kakaoSearch, backendAPI }) {
           <Route path="/signup" element={<Signup />}></Route>
           <Route
             path="/books"
-            element={<Books backendAPI={backendAPI} />}></Route>
+            element={
+              <Books backendAPI={backendAPI} authService={authService} />
+            }></Route>
           <Route
             path="/search"
             element={<Search kakaoSearch={kakaoSearch} />}></Route>

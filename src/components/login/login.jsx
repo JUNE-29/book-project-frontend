@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./login.module.css";
@@ -11,13 +12,25 @@ const Login = ({ authService }) => {
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    authService.login(email, password);
-    goToBook();
+    authService.login(email, password).then(() => checkToken());
   };
 
   const navigate = useNavigate();
-  const goToBook = () => {
-    navigate("/books");
+  const goToBook = (userToken) => {
+    navigate("/books", {
+      state: { token: userToken },
+    });
+  };
+
+  useEffect(() => {
+    checkToken();
+  });
+
+  const checkToken = () => {
+    const accessToken = localStorage.getItem("ACCESS_TOKEN");
+    if (accessToken && accessToken !== null) {
+      goToBook(accessToken);
+    }
   };
 
   return (

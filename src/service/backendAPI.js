@@ -13,7 +13,6 @@ class BackendAPI {
       .catch((error) => {
         console.log(error);
       });
-    console.log(response.data.data.content);
     return response.data.data.content.map((item) => ({
       ...item,
     }));

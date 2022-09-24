@@ -1,11 +1,16 @@
 import React, { useRef, useState } from "react";
 import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import BookBasket from "../bookBasket/bookBasket";
 import Header from "../header/header";
 import ReadBooks from "../readBooks/readBooks";
 import styles from "./books.module.css";
 
-const Books = ({ backendAPI }) => {
+const Books = ({ backendAPI, authService }) => {
+  const navigater = useNavigate();
+  const location = useLocation();
+  const locationState = location.state.token;
+  const [userToken, setUserToken] = useState(locationState);
   const [books, setBooks] = useState([]);
   const readBooks = useRef();
   const onShowReadbooks = () => {
@@ -23,13 +28,29 @@ const Books = ({ backendAPI }) => {
     );
   };
 
+  const onLogout = () => {
+    authService.logout();
+    setUserToken(null);
+  };
+
   useEffect(() => {
+    if (!userToken) {
+      return;
+    }
     backendAPI.ReadMemberBooks().then((book) => setBooks(book));
-  }, []);
+  }, [userToken]);
+
+  useEffect(() => {
+    if (userToken) {
+      setUserToken(userToken);
+    } else {
+      navigater("/");
+    }
+  });
 
   return (
     <>
-      <Header />
+      <Header onLogout={onLogout} />
       <section className={styles.books}>
         <div className={styles.header}>
           <span className={styles.menu} onClick={onShowReadbooks}>

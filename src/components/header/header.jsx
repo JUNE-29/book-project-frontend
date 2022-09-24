@@ -4,7 +4,7 @@ import Navbar from "../navbar/navbar";
 import Search from "../search/search";
 import styles from "./header.module.css";
 
-const Header = (props) => {
+const Header = ({ onLogout }) => {
   const downBox = useRef();
   let userNameBtnToggle = true;
   const onClick = () => {
@@ -31,7 +31,9 @@ const Header = (props) => {
           alt="down arrow"></img>
         <div className={styles.downBox} ref={downBox}>
           <span className={styles.downMenu}>회원 정보 변경</span>
-          <span className={styles.downMenu}>로그아웃</span>
+          <span className={styles.downMenu} onClick={onLogout}>
+            로그아웃
+          </span>
         </div>
       </div>
     </header>
