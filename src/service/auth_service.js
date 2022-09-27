@@ -15,9 +15,10 @@ class AuthService {
         }
       })
       .catch((error) => {
-        if (error.status === 403) {
-          window.location.href = "/";
-        }
+        // if (error.status === 403) {
+        //   window.location.href = "/";
+        // }
+        console.log(error);
       });
   }
 

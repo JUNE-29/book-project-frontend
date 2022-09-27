@@ -9,11 +9,12 @@ import styles from "./books.module.css";
 const Books = ({ backendAPI, authService }) => {
   const navigater = useNavigate();
   const location = useLocation();
-  const locationState = location.state.token;
+  const locationState = location?.state?.token;
   const [userToken, setUserToken] = useState(locationState);
-  const [books, setBooks] = useState([]);
+  const [bookList, setBookList] = useState([]);
   const readBooks = useRef();
   const onShowReadbooks = () => {
+    readDoneBooks();
     return (
       (readBooks.current.style.display = "block"),
       (bookBasket.current.style.display = "none")
@@ -22,6 +23,7 @@ const Books = ({ backendAPI, authService }) => {
 
   const bookBasket = useRef();
   const onShowBookBasket = () => {
+    readWillBooks();
     return (
       (bookBasket.current.style.display = "block"),
       (readBooks.current.style.display = "none")
@@ -33,20 +35,31 @@ const Books = ({ backendAPI, authService }) => {
     setUserToken(null);
   };
 
-  useEffect(() => {
-    if (!userToken) {
-      return;
-    }
-    backendAPI.ReadMemberBooks().then((book) => setBooks(book));
-  }, [userToken]);
+  const readDoneBooks = () => {
+    const done = "DONE";
+    backendAPI.ReadMemberBooks(done).then((book) => setBookList(book));
+  };
+
+  const readWillBooks = () => {
+    const will = "WILL";
+    backendAPI.ReadMemberBooks(will).then((book) => setBookList(book));
+  };
+
+  // useEffect(() => {
+  //   if (!userToken) {
+  //     return;
+  //   }
+  //   readDoneBooks();
+  // }, [userToken]);
 
   useEffect(() => {
     if (userToken) {
       setUserToken(userToken);
+      readDoneBooks();
     } else {
       navigater("/");
     }
-  });
+  }, [userToken]);
 
   return (
     <>
@@ -61,10 +74,10 @@ const Books = ({ backendAPI, authService }) => {
           </span>
         </div>
         <div className={styles.readBooks} ref={readBooks}>
-          <ReadBooks books={books} />
+          <ReadBooks bookList={bookList} />
         </div>
         <div className={styles.bookBasket} ref={bookBasket}>
-          <BookBasket books={books} />
+          <BookBasket books={bookList} />
         </div>
       </section>
     </>

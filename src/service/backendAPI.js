@@ -3,17 +3,17 @@ class BackendAPI {
     this.request = request;
   }
 
-  async ReadMemberBooks() {
+  async ReadMemberBooks(type) {
     const response = await this.request
       .get("memberBook", {
         params: {
-          bookType: "DONE",
+          bookType: `${type}`,
         },
       })
       .catch((error) => {
         console.log(error);
       });
-    return response.data.data.content.map((item) => ({
+    return response.data.content.content.map((item) => ({
       ...item,
     }));
   }
