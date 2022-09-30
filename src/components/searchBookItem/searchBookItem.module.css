@@ -1,0 +1,33 @@
+@value mainColor, colorWhite, colorLightGreen, colorGrey, colorBlack from '../../common/colors.css';
+
+.li {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1.5em;
+  border-bottom: solid 1px colorGrey;
+  cursor: pointer;
+}
+
+.thumbnail {
+  border: solid 1px transparent;
+  border-radius: 1em;
+  margin-bottom: 1.5em;
+}
+
+.info {
+  margin-left: 1em;
+}
+
+.title {
+  margin-top: 0.3em;
+  margin-bottom: 0;
+}
+
+.authors {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+
+.contents {
+  margin-top: 0.5em;
+}

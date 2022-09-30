@@ -2,7 +2,7 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  max-width: 500px;
+  width: 500px;
   margin: 0 auto;
   margin-top: 3rem;
   padding: 0;

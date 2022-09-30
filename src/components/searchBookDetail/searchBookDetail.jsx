@@ -29,7 +29,10 @@ const SearchBookDetail = ({ backendAPI }) => {
         <h3 className={styles.h3}>책 정보 자세히보기</h3>
         <div className={styles.contents}>
           <div>
-            <img className={styles.thumbnail} src={book.thumbnail}></img>
+            <img
+              className={styles.thumbnail}
+              src={book.thumbnail}
+              alt="thumbnail"></img>
           </div>
           <div className={styles.infoBox}>
             <h3 className={styles.title}>{book.title}</h3>
