@@ -1,0 +1,86 @@
+@value mainColor, colorWhite, colorLightGreen, modalShadow, colorBlack from '../../common/colors.css';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.h3 {
+  text-align: center;
+  color: mainColor;
+}
+
+.contents {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 1.5em;
+  background-color: colorWhite;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px 0px modalShadow;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.thumbnail {
+  border: solid 1px transparent;
+  border-radius: 1em;
+}
+
+.infoBox {
+  margin-left: 1em;
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 0.3em;
+}
+
+.division {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.h4 {
+  margin-bottom: 0.3em;
+}
+
+.bookContents {
+  margin-top: 0;
+}
+
+.buttonBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 1em;
+}
+
+.button {
+  width: 250px;
+  height: 3em;
+  border: 1px solid mainColor;
+  border-radius: 20px;
+  background-color: mainColor;
+  color: colorWhite;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: colorLightGreen;
+  border-color: colorLightGreen;
+}
+
+@media screen and (max-width: 62rem) {
+  .buttonBox {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .button {
+    margin-bottom: 1em;
+  }
+}

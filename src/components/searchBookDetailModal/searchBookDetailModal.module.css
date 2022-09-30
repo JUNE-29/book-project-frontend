@@ -1,0 +1,74 @@
+@value mainColor, colorBlack, colorGrey, colorWhite, colorWhiteGrey, modalShadow from '../../common/colors.css';
+
+.container {
+  width: 500px;
+  height: 300px;
+
+  /* 최상단 위치 */
+  z-index: 999;
+
+  /* 중앙 배치 */
+  /* top, bottom, left, right 는 브라우저 기준으로 작동한다. */
+  /* translate는 본인의 크기 기준으로 작동한다. */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* 모달창 디자인 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: colorWhite;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px 0px modalShadow;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  color: mainColor;
+  border-bottom: solid 1px colorWhiteGrey;
+}
+
+.contents {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.text {
+  color: mainColor;
+}
+
+.date {
+  border: solid 1px mainColor;
+  color: mainColor;
+  margin-left: 0.5em;
+  cursor: pointer;
+}
+
+.rate {
+  margin-top: 1.5em;
+  margin-left: 1.5em;
+}
+
+.close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border: none;
+  background-color: transparent;
+  color: mainColor;
+  cursor: pointer;
+}
+
+.button {
+  width: 50%;
+  height: 3em;
+  border: 1px solid mainColor;
+  border-radius: 20px;
+  background-color: mainColor;
+  color: colorWhite;
+  font-size: 15px;
+  cursor: pointer;
+}

@@ -11,7 +11,7 @@ const Search = ({ kakaoSearch }) => {
 
   const navigate = useNavigate();
   const goToDetail = (book) => {
-    navigate("/bookDetail", {
+    navigate("/searchBookDetail", {
       state: {
         book: book,
       },

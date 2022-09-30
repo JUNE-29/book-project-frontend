@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styles from "./app.module.css";
-import BookDetail from "./components/bookDetail/bookDetail";
 import Books from "./components/books/books";
 import Login from "./components/login/login";
 import Search from "./components/search/search";
+import SearchBookDetail from "./components/searchBookDetail/searchBookDetail";
 import Signup from "./components/signup/signup";
 
 function App({ authService, kakaoSearch, backendAPI }) {
@@ -21,7 +21,9 @@ function App({ authService, kakaoSearch, backendAPI }) {
           <Route
             path="/search"
             element={<Search kakaoSearch={kakaoSearch} />}></Route>
-          <Route path="/bookDetail" element={<BookDetail />}></Route>
+          <Route
+            path="/searchBookDetail"
+            element={<SearchBookDetail backendAPI={backendAPI} />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
