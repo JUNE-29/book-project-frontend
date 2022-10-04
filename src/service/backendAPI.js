@@ -1,3 +1,5 @@
+import { ThirtyFpsSelectRounded } from "@mui/icons-material";
+
 class BackendAPI {
   constructor(request) {
     this.request = request;
@@ -23,7 +25,8 @@ class BackendAPI {
   }
 
   sendbookData(book) {
-    console.log(book);
+    const datetime =
+      book.datetime.length > 10 ? book.datetime.slice(0, 10) : book.datetime;
     this.request
       .post("book", {
         isbn: `${book.isbn}`,
@@ -31,16 +34,16 @@ class BackendAPI {
         summary: `${book.contents}`,
         author: `${book.authors}`,
         publisher: `${book.publisher}`,
-        publishDate: `${book.datetime.slice(0, 10)}`,
+        publishDate: `${datetime}`,
         imageSrc: `${book.thumbnail}`,
       })
       .then((response) => {
         console.log(response);
         this.checkMemberBook(
           this.book,
+          this.bookType,
           this.rate,
-          this.doneDate,
-          this.bookType
+          this.doneDate
         );
       })
       .catch((error) => {
@@ -53,7 +56,6 @@ class BackendAPI {
     this.rate = rate;
     this.doneDate = doneDate;
     this.bookType = bookType;
-    console.log(book, bookType, rate, doneDate);
 
     this.request
       .post("memberBook", {
@@ -69,6 +71,26 @@ class BackendAPI {
         console.log(error);
         this.sendbookData(book);
       });
+  }
+
+  async getMemberBook(book) {
+    this.book = book;
+    const response = await this.request
+      .get(`memberBook/${book.memberBookId}`)
+      .catch((error) => {
+        console.log(error);
+      });
+
+    return response.data.content;
+  }
+
+  async removeMemberBook(memberBookId) {
+    const response = await this.request
+      .delete(`memberBook/${memberBookId}`)
+      .catch((error) => {
+        console.log(error);
+      });
+    return response;
   }
 }
 

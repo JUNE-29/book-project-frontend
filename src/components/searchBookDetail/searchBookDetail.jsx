@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import Button from "../button/button";
 import Header from "../header/header";
 import SearchBookDetailModal from "../searchBookDetailModal/searchBookDetailModal";
 import styles from "./searchBookDetail.module.css";
@@ -20,6 +21,7 @@ const SearchBookDetail = ({ backendAPI }) => {
   const addWillBook = () => {
     const bookType = "WILL";
     backendAPI.checkMemberBook(book, bookType);
+    alert("해당 책을 서재에 담았습니다!");
   };
 
   return (
@@ -48,13 +50,9 @@ const SearchBookDetail = ({ backendAPI }) => {
           </div>
         </div>
         <div className={styles.buttonBox}>
-          <button className={styles.button} onClick={addWillBook}>
-            읽고 싶은 책에 담기
-          </button>
+          <Button text="읽고 싶은 책에 담기" onClick={addWillBook} />
           <div className={styles.done}>
-            <button className={styles.button} onClick={showModal}>
-              읽은 책에 담기
-            </button>
+            <Button text="읽은 책에 담기" onClick={showModal} />
             {modalOpen && (
               <SearchBookDetailModal
                 addDoneBook={addDoneBook}

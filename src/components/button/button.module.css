@@ -1,0 +1,17 @@
+@value mainColor, colorWhite, colorLightGreen from '../../common/colors.css';
+
+.button {
+  width: 250px;
+  height: 3em;
+  border: 1px solid mainColor;
+  border-radius: 20px;
+  background-color: mainColor;
+  color: colorWhite;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: colorLightGreen;
+  border-color: colorLightGreen;
+}

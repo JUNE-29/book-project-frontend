@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import HeartRating from "../rating/rating";
+import { HeartRating } from "../rating/rating";
 import styles from "./searchBookDetailModal.module.css";
 
 const SearchBookDetailModal = ({ setModalOpen, addDoneBook }) => {

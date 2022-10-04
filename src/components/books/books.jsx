@@ -12,6 +12,20 @@ const Books = ({ backendAPI, authService }) => {
   const locationState = location?.state?.token;
   const [userToken, setUserToken] = useState(locationState);
   const [bookList, setBookList] = useState([]);
+
+  const onBookClick = (book) => {
+    backendAPI.getMemberBook(book).then((bookInfo) => goToDetail(bookInfo));
+  };
+
+  const navigate = useNavigate();
+  const goToDetail = (bookInfo) => {
+    navigate("/bookDetail", {
+      state: {
+        book: bookInfo,
+      },
+    });
+  };
+
   const readBooks = useRef();
   const onShowReadbooks = () => {
     readDoneBooks();
@@ -45,13 +59,6 @@ const Books = ({ backendAPI, authService }) => {
     backendAPI.ReadMemberBooks(will).then((book) => setBookList(book));
   };
 
-  // useEffect(() => {
-  //   if (!userToken) {
-  //     return;
-  //   }
-  //   readDoneBooks();
-  // }, [userToken]);
-
   useEffect(() => {
     if (userToken) {
       setUserToken(userToken);
@@ -74,10 +81,10 @@ const Books = ({ backendAPI, authService }) => {
           </span>
         </div>
         <div className={styles.readBooks} ref={readBooks}>
-          <ReadBooks bookList={bookList} />
+          <ReadBooks bookList={bookList} onBookClick={onBookClick} />
         </div>
         <div className={styles.bookBasket} ref={bookBasket}>
-          <BookBasket books={bookList} />
+          <BookBasket bookList={bookList} onBookClick={onBookClick} />
         </div>
       </section>
     </>

@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styles from "./app.module.css";
+import BookDetail from "./components/bookDetail/bookDetail";
 import Books from "./components/books/books";
 import Login from "./components/login/login";
 import Search from "./components/search/search";
@@ -18,6 +19,9 @@ function App({ authService, kakaoSearch, backendAPI }) {
             element={
               <Books backendAPI={backendAPI} authService={authService} />
             }></Route>
+          <Route
+            path="/bookDetail"
+            element={<BookDetail backendAPI={backendAPI} />}></Route>
           <Route
             path="/search"
             element={<Search kakaoSearch={kakaoSearch} />}></Route>

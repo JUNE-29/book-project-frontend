@@ -1,13 +1,15 @@
 import React from "react";
 import styles from "./ReadBookItem.module.css";
 
-const ReadBookItem = ({ book }) => {
-  const { id, title, author } = book;
+const ReadBookItem = ({ books, onBookClick }) => {
+  const { id, title, author } = books.book;
   const bookType = id % 2 === 0 && styles.second;
   return (
     <>
       {/* <li className={`${styles.book} ${getThickness(page)} ${bookType}`}></li> */}
-      <li className={`${styles.book} ${bookType}`}>
+      <li
+        className={`${styles.book} ${bookType}`}
+        onClick={() => onBookClick(books)}>
         <span>
           {title} - {author}
         </span>

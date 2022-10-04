@@ -1,0 +1,60 @@
+@value mainColor, colorWhite, colorLightGreen, modalShadow, colorBlack from '../../common/colors.css';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.contents {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 1.5em;
+  background-color: colorWhite;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px 0px modalShadow;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.thumbnail {
+  border: solid 1px transparent;
+  border-radius: 1em;
+}
+
+.infoBox {
+  margin-left: 1em;
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 0.3em;
+}
+
+.division {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.rate {
+  margin-top: 1em;
+}
+
+.h4 {
+  margin-top: 0.5em;
+  margin-bottom: 0.3em;
+}
+
+.bookContents {
+  margin-top: 0;
+}
+
+.buttonBox {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1em;
+  justify-content: center;
+  gap: 3em;
+}

@@ -2,8 +2,7 @@ import React from "react";
 import ReadBookItem from "../readBookItem/ReadBookItem";
 import styles from "./readBooks.module.css";
 
-const ReadBooks = ({ bookList }) => {
-  console.log(bookList);
+const ReadBooks = ({ bookList, onBookClick }) => {
   return (
     <section className={styles.readBooks}>
       <div className={styles.info}>
@@ -17,7 +16,11 @@ const ReadBooks = ({ bookList }) => {
       <div className={styles.booksBox}>
         <ul>
           {bookList.map((books) => (
-            <ReadBookItem key={books.book.bookId} book={books.book} />
+            <ReadBookItem
+              key={books.book.bookId}
+              books={books}
+              onBookClick={onBookClick}
+            />
           ))}
         </ul>
       </div>

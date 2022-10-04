@@ -16,7 +16,7 @@ const StyledRating = styled(Rating)({
   },
 });
 
-export default function HeartRating({ getRateValue }) {
+function HeartRating({ getRateValue }) {
   const [heartValue, setheartValue] = React.useState(0);
   getRateValue(heartValue);
   return (
@@ -41,3 +41,24 @@ export default function HeartRating({ getRateValue }) {
     </Box>
   );
 }
+
+function ReadOnlyHeartRate(rate) {
+  return (
+    <Box
+      sx={{
+        "& > legend": { mt: 2 },
+      }}>
+      <StyledRating
+        name="customized-color"
+        icon={<FavoriteIcon fontSize="inherit" />}
+        emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+        value={rate.rate}
+        precision={0.5}
+        size="large"
+        readOnly
+      />
+    </Box>
+  );
+}
+
+export { HeartRating, ReadOnlyHeartRate };

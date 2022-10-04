@@ -7,7 +7,6 @@ import styles from "./search.module.css";
 
 const Search = ({ kakaoSearch }) => {
   const [booklist, setBooklist] = useState([]);
-  const [selectedBook, setSelectedBook] = useState(null);
 
   const navigate = useNavigate();
   const goToDetail = (book) => {
@@ -19,8 +18,7 @@ const Search = ({ kakaoSearch }) => {
   };
 
   const selectBook = (book) => {
-    setSelectedBook(book);
-    selectedBook && goToDetail(book);
+    book && goToDetail(book);
   };
 
   const searchRef = useRef();

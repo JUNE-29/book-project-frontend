@@ -1,0 +1,12 @@
+@value booksShadow from '../../common/colors.css';
+.book {
+  list-style: none;
+  padding: 1.5em;
+}
+
+.thumbnail {
+  border: solid 1px transparent;
+  border-radius: 1em;
+  cursor: pointer;
+  box-shadow: 5px 5px 15px 0px booksShadow;
+}
