@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import Button from "../button/button";
-import Header from "../header/header";
-import SearchBookDetailModal from "../searchBookDetailModal/searchBookDetailModal";
+import Button from "../../components/button/button";
+import Header from "../../components/header/header";
+import SearchBookDetailModal from "../../components/searchBookDetailModal/searchBookDetailModal";
 import styles from "./searchBookDetail.module.css";
 
 const SearchBookDetail = ({ backendAPI }) => {

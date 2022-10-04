@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import BookBasket from "../bookBasket/bookBasket";
-import Header from "../header/header";
-import ReadBooks from "../readBooks/readBooks";
+import BookBasket from "../../components/bookBasket/bookBasket";
+import Header from "../../components/header/header";
+import ReadBooks from "../../components/readBooks/readBooks";
 import styles from "./books.module.css";
 
 const Books = ({ backendAPI, authService }) => {

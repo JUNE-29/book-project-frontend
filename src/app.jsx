@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styles from "./app.module.css";
-import BookDetail from "./components/bookDetail/bookDetail";
-import Books from "./components/books/books";
-import Login from "./components/login/login";
-import Search from "./components/search/search";
-import SearchBookDetail from "./components/searchBookDetail/searchBookDetail";
-import Signup from "./components/signup/signup";
+import BookDetail from "./routes/bookDetail/bookDetail";
+import Books from "./routes/books/books";
+import Login from "./routes/login/login";
+import Search from "./routes/search/search";
+import SearchBookDetail from "./routes/searchBookDetail/searchBookDetail";
+import Signup from "./routes/signup/signup";
 
 function App({ authService, kakaoSearch, backendAPI }) {
   return (

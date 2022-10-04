@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Button from "../button/button";
-import Header from "../header/header";
-import { ReadOnlyHeartRate } from "../rating/rating";
-import SearchBookDetailModal from "../searchBookDetailModal/searchBookDetailModal";
+import Button from "../../components/button/button";
+import Header from "../../components/header/header";
+import { ReadOnlyHeartRate } from "../../components/rating/rating";
+import SearchBookDetailModal from "../../components/searchBookDetailModal/searchBookDetailModal";
 import styles from "./bookDetail.module.css";
 
 const BookDetail = ({ backendAPI }) => {

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../header/header";
-import SearchBookList from "../searchBookList/searchBookList";
+import Header from "../../components/header/header";
+import SearchBookList from "../../components/searchBookList/searchBookList";
 import styles from "./search.module.css";
 
 const Search = ({ kakaoSearch }) => {
