@@ -18,20 +18,4 @@ const ReadBookItem = ({ books, onBookClick }) => {
   );
 };
 
-// function getThickness(page) {
-//   if (page <= 150) {
-//     return styles.thin;
-//   } else if (page <= 250) {
-//     return styles.light;
-//   } else if (page <= 350) {
-//     return styles.regular;
-//   } else if (page < 550) {
-//     return styles.medium;
-//   } else if (page > 550) {
-//     return styles.bold;
-//   } else {
-//     throw new Error(`unknown page: ${page}`);
-//   }
-// }
-
 export default ReadBookItem;

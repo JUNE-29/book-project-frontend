@@ -11,31 +11,6 @@
   cursor: pointer;
 }
 
-.book.thin {
-  height: 10px;
-  line-height: 10px;
-}
-
-.book.light {
-  height: 25px;
-  line-height: 25px;
-}
-
-.book.regular {
-  height: 40px;
-  line-height: 40px;
-}
-
-.book.medium {
-  height: 50px;
-  line-height: 50px;
-}
-
-.book.bold {
-  height: 60px;
-  line-height: 60px;
-}
-
 .book.second {
   background-color: #7da48a;
   margin-left: 30px;
