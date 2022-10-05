@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./searchBookItem.module.css";
 
-const SearchBookItem = ({ book, onBookClick }) => {
+const SearchBookItem = ({ target, book, onBookClick }) => {
   return (
-    <li className={styles.li} onClick={() => onBookClick(book)}>
+    <li ref={target} className={styles.li} onClick={() => onBookClick(book)}>
       <div>
         <img
           src={book.thumbnail}

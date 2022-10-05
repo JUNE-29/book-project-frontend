@@ -2,11 +2,17 @@ import React from "react";
 import SearchBookItem from "../searchBookItem/searchBookItem";
 import styles from "./searchBookList.module.css";
 
-const SearchBookList = ({ booklist, onBookClick }) => {
+const SearchBookList = ({ target, booklist, onBookClick }) => {
+  console.log(booklist);
   return (
     <ul className={styles.list}>
       {booklist.map((book) => (
-        <SearchBookItem key={book.isbn} book={book} onBookClick={onBookClick} />
+        <SearchBookItem
+          key={book.isbn}
+          book={book}
+          target={target}
+          onBookClick={onBookClick}
+        />
       ))}
     </ul>
   );
