@@ -9,19 +9,19 @@ class BackendAPI {
     const bookType = null;
   }
 
-  async ReadMemberBooks(type) {
+  async ReadMemberBooks(type, page) {
     const response = await this.request
       .get("memberBook", {
         params: {
           bookType: `${type}`,
+          page: page,
+          size: 10,
         },
       })
       .catch((error) => {
         console.log(error);
       });
-    return response.data.content.content.map((item) => ({
-      ...item,
-    }));
+    return response.data.content;
   }
 
   sendbookData(book) {

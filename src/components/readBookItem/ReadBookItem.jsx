@@ -6,7 +6,6 @@ const ReadBookItem = ({ books, onBookClick }) => {
   const bookType = id % 2 === 0 && styles.second;
   return (
     <>
-      {/* <li className={`${styles.book} ${getThickness(page)} ${bookType}`}></li> */}
       <li
         className={`${styles.book} ${bookType}`}
         onClick={() => onBookClick(books)}>

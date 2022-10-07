@@ -2,12 +2,12 @@ import React from "react";
 import BookBasketItem from "../bookBasketItem/bookBasketItem";
 import styles from "./bookBasket.module.css";
 
-const BookBasket = ({ bookList, onBookClick }) => {
+const BookBasket = ({ totalBooks, bookList, onBookClick }) => {
   return (
     <section className={styles.bookBasket}>
       <div className={styles.info}>
         <span className={styles.totalBooks}>
-          총 읽고 싶은 책: {bookList.length}권
+          총 읽고 싶은 책: {totalBooks}권
         </span>
       </div>
       <div className={styles.booksBox}>

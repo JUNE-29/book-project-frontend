@@ -7,11 +7,14 @@ import ReadBooks from "../../components/readBooks/readBooks";
 import styles from "./books.module.css";
 
 const Books = ({ backendAPI, authService }) => {
+  const [bookList, setBookList] = useState([]);
+  const [endPage, setEndPage] = useState(false);
+  const [totalBooks, setTotalBooks] = useState(0);
+  const [hasNext, setHasNext] = useState(false);
   const navigater = useNavigate();
   const location = useLocation();
   const locationState = location?.state?.token;
   const [userToken, setUserToken] = useState(locationState);
-  const [bookList, setBookList] = useState([]);
 
   const onBookClick = (book) => {
     backendAPI.getMemberBook(book).then((bookInfo) => goToDetail(bookInfo));
@@ -30,8 +33,8 @@ const Books = ({ backendAPI, authService }) => {
   const onShowReadbooks = () => {
     readDoneBooks();
     return (
-      (readBooks.current.style.display = "block"),
-      (bookBasket.current.style.display = "none")
+      (bookBasket.current.style.display = "none"),
+      (readBooks.current.style.display = "block")
     );
   };
 
@@ -49,14 +52,46 @@ const Books = ({ backendAPI, authService }) => {
     setUserToken(null);
   };
 
+  const DONE = "DONE";
+  let page = 0;
   const readDoneBooks = () => {
-    const done = "DONE";
-    backendAPI.ReadMemberBooks(done).then((book) => setBookList(book));
+    page = 0;
+    backendAPI.ReadMemberBooks(DONE, page).then((data) => {
+      setBookList(data.content.map((item) => ({ ...item })));
+      setEndPage(data.lastPage);
+      setTotalBooks(data.totalElements);
+      setHasNext(data.hasNext);
+    });
   };
 
+  const moreReadDoneBooks = () => {
+    ++page;
+    backendAPI.ReadMemberBooks(DONE, page).then((data) => {
+      const newBookList = data.content.map((item) => ({ ...item }));
+      !endPage && setBookList((prev) => [...prev, ...newBookList]);
+      setEndPage(data.lastPage);
+      setHasNext(data.hasNext);
+    });
+  };
+
+  const WILL = "WILL";
   const readWillBooks = () => {
-    const will = "WILL";
-    backendAPI.ReadMemberBooks(will).then((book) => setBookList(book));
+    backendAPI.ReadMemberBooks(WILL).then((data) => {
+      setBookList(data.content.map((item) => ({ ...item })));
+      setEndPage(data.lastPage);
+      setTotalBooks(data.totalElements);
+      setHasNext(data.hasNext);
+    });
+  };
+
+  const moreReadWillBooks = () => {
+    ++page;
+    backendAPI.ReadMemberBooks(WILL, page).then((data) => {
+      const newBookList = data.content.map((item) => ({ ...item }));
+      !endPage && setBookList((prev) => [...prev, ...newBookList]);
+      setEndPage(data.lastPage);
+      setHasNext(data.hasNext);
+    });
   };
 
   useEffect(() => {
@@ -81,10 +116,32 @@ const Books = ({ backendAPI, authService }) => {
           </span>
         </div>
         <div className={styles.readBooks} ref={readBooks}>
-          <ReadBooks bookList={bookList} onBookClick={onBookClick} />
+          <div className={styles.readBooksBox}>
+            <ReadBooks
+              totalBooks={totalBooks}
+              bookList={bookList}
+              onBookClick={onBookClick}
+            />
+            {hasNext && (
+              <button className={styles.button} onClick={moreReadDoneBooks}>
+                더 불러오기
+              </button>
+            )}
+          </div>
         </div>
         <div className={styles.bookBasket} ref={bookBasket}>
-          <BookBasket bookList={bookList} onBookClick={onBookClick} />
+          <div className={styles.bookBasketBox}>
+            <BookBasket
+              totalBooks={totalBooks}
+              bookList={bookList}
+              onBookClick={onBookClick}
+            />
+            {
+              <button className={styles.button} onClick={moreReadWillBooks}>
+                더 불러오기
+              </button>
+            }
+          </div>
         </div>
       </section>
     </>
