@@ -136,11 +136,11 @@ const Books = ({ backendAPI, authService }) => {
               bookList={bookList}
               onBookClick={onBookClick}
             />
-            {
+            {hasNext && (
               <button className={styles.button} onClick={moreReadWillBooks}>
                 더 불러오기
               </button>
-            }
+            )}
           </div>
         </div>
       </section>

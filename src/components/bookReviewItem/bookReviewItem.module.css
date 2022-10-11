@@ -1,0 +1,39 @@
+@value mainColor, colorGrey from '../../common/colors.css';
+
+.li {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  border-bottom: solid 1px colorGrey;
+  padding-bottom: 1em;
+  cursor: pointer;
+  color: mainColor;
+}
+
+.titleBox {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+}
+
+.bookTitle,
+.reviewDate {
+  font-size: smaller;
+}
+
+.emojiBox {
+  display: flex;
+  background-color: mainColor;
+  width: 50px;
+  height: 50px;
+  border: 1px solid mainColor;
+  border-radius: 1em;
+  margin-right: 1em;
+  text-align: center;
+  justify-content: center;
+}
+
+.emoji {
+  font-size: x-large;
+  padding-top: 0.2em;
+}

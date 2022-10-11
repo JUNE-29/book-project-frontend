@@ -8,7 +8,9 @@ const Navbar = (props) => {
       <Link to="/books" className={styles.menu}>
         서적
       </Link>
-      <span className={styles.menu}>감상문</span>
+      <Link to="/bookReview" className={styles.menu}>
+        감상문
+      </Link>
       <span className={styles.menu}>필사함</span>
       <Link to="/search" className={styles.menu}>
         책검색

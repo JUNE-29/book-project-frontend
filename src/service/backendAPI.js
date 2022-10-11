@@ -92,6 +92,13 @@ class BackendAPI {
       });
     return response;
   }
+
+  async getReviewList() {
+    const response = await this.request.get(`review`).catch((error) => {
+      console.log(error);
+    });
+    return response.data.content.content.map((item) => ({ ...item }));
+  }
 }
 
 export default BackendAPI;
