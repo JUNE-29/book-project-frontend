@@ -7,6 +7,27 @@ import styles from "./bookReview.module.css";
 
 const BookReview = ({ backendAPI }) => {
   const [reviewList, setReviewList] = useState([]);
+  const [doneBooks, setDoneBooks] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const showModal = () => {
+    // showdoneBooks();
+    setModalOpen(true);
+  };
+
+  const DONE = "DONE";
+  let page = 0;
+  // const showdoneBooks = () => {
+  //   backendAPI.ReadMemberBooks(DONE, page).then((book) => {
+  //     setDoneBooks(book);
+  //   });
+  // };
+
+  useEffect(() => {
+    page = 0;
+    backendAPI.ReadMemberBooks(DONE, page).then((book) => {
+      setDoneBooks(book);
+    });
+  }, []);
 
   useEffect(() => {
     backendAPI.getReviewList().then((data) => {
@@ -19,7 +40,12 @@ const BookReview = ({ backendAPI }) => {
       <Header />
       <div className={styles.container}>
         <div className={styles.buttonBox}>
-          <button className={styles.button}> 감상문 쓰기 </button>
+          <button className={styles.button} onClick={showModal}>
+            감상문 쓰기
+          </button>
+          {modalOpen && (
+            <DoneBooksModal doneBooks={doneBooks} setModalOpen={setModalOpen} />
+          )}
         </div>
         <section className={styles.ReviewList}>
           <BookReviewList reviewList={reviewList} />

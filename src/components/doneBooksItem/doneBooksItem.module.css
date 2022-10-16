@@ -1,0 +1,62 @@
+@value colorWhite, booksShadow from '../../common/colors.css';
+
+.li {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.input {
+  display: none;
+}
+
+.label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.check {
+  position: absolute;
+  font-size: 2.5em;
+  top: 50%;
+  visibility: hidden;
+}
+
+.input:checked + label {
+  z-index: 999;
+}
+
+.input:checked + label > .check {
+  visibility: visible;
+  position: absolute;
+  font-size: 3.5em;
+  top: 30%;
+  left: 30%;
+  color: colorWhite;
+  z-index: 999;
+}
+
+.input:checked + label::after {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 80%;
+  background: rgba(0, 0, 0, 0.7);
+  content: "";
+}
+
+.thumbnail {
+  width: 150px;
+  border: solid 1px transparent;
+  border-radius: 1em;
+  margin-bottom: 0.3em;
+}
+
+.title {
+  font-weight: 600;
+}
