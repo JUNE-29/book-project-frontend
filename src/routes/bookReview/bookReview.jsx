@@ -9,23 +9,32 @@ const BookReview = ({ backendAPI }) => {
   const [reviewList, setReviewList] = useState([]);
   const [doneBooks, setDoneBooks] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
+  const [hasNext, setHasNext] = useState(false);
+  const [lastPage, setLastPage] = useState(false);
   const showModal = () => {
-    // showdoneBooks();
     setModalOpen(true);
   };
 
   const DONE = "DONE";
   let page = 0;
-  // const showdoneBooks = () => {
-  //   backendAPI.ReadMemberBooks(DONE, page).then((book) => {
-  //     setDoneBooks(book);
-  //   });
-  // };
+
+  const moreDoneBooks = () => {
+    ++page;
+    backendAPI.ReadMemberBooks(DONE, page).then((book) => {
+      const newDoneBooks = book.content.map((item) => ({ ...item }));
+      !lastPage && setDoneBooks((prev) => [...prev, ...newDoneBooks]);
+      setLastPage(book.lastPage);
+      setHasNext(book.hasNext);
+    });
+  };
+  console.log(doneBooks);
 
   useEffect(() => {
     page = 0;
     backendAPI.ReadMemberBooks(DONE, page).then((book) => {
-      setDoneBooks(book);
+      setDoneBooks(book.content.map((item) => ({ ...item })));
+      setLastPage(book.lastPage);
+      setHasNext(book.hasNext);
     });
   }, []);
 
@@ -44,7 +53,12 @@ const BookReview = ({ backendAPI }) => {
             감상문 쓰기
           </button>
           {modalOpen && (
-            <DoneBooksModal doneBooks={doneBooks} setModalOpen={setModalOpen} />
+            <DoneBooksModal
+              doneBooks={doneBooks}
+              setModalOpen={setModalOpen}
+              hasNext={hasNext}
+              moreDoneBooks={moreDoneBooks}
+            />
           )}
         </div>
         <section className={styles.ReviewList}>

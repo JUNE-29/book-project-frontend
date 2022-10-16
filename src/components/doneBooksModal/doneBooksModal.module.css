@@ -1,4 +1,4 @@
-@value mainColor, colorBlack, colorDarkGrey, colorWhite, colorWhiteGrey, modalShadow from '../../common/colors.css';
+@value mainColor, colorWhiteGrey0, colorLightGreen, colorBlack, colorDarkGrey, colorWhite, colorWhiteGrey, modalShadow from '../../common/colors.css';
 
 .container {
   width: 800px;
@@ -56,6 +56,31 @@
   background-color: transparent;
   color: colorDarkGrey;
   cursor: pointer;
+}
+
+.moreButtonBox {
+  display: flex;
+  text-align: center;
+  width: 100%;
+  padding: 1em;
+  height: 90%;
+}
+
+.moreButton {
+  height: 100%;
+  border: 1px solid colorLightGreen;
+  border-radius: 1em;
+  background-color: transparent;
+  font-size: 1em;
+  font-weight: 600;
+  color: colorLightGreen;
+  cursor: pointer;
+}
+
+.moreButton:hover {
+  color: mainColor;
+  background-color: colorWhiteGrey0;
+  border: 1px solid mainColor;
 }
 
 .button {

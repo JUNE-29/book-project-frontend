@@ -2,7 +2,13 @@ import React from "react";
 import DoneBooksItem from "../doneBooksItem/doneBooksItem";
 import styles from "./doneBooksModal.module.css";
 
-const DoneBooksModal = ({ doneBooks: { content }, setModalOpen }) => {
+const DoneBooksModal = ({
+  doneBooks,
+  setModalOpen,
+  hasNext,
+  moreDoneBooks,
+}) => {
+  console.log(doneBooks);
   const close = () => {
     setModalOpen(false);
   };
@@ -18,13 +24,20 @@ const DoneBooksModal = ({ doneBooks: { content }, setModalOpen }) => {
       </div>
       <div className={styles.contents}>
         <ul className={styles.books}>
-          {content.map((doneBook) => (
-            <DoneBooksItem
-              //OnlyCheckBox={OnlyCheckBox}
-              doneBook={doneBook}
-              key={doneBook.memberBookId}
-            />
+          {doneBooks.map((doneBook) => (
+            <DoneBooksItem doneBook={doneBook} key={doneBook.memberBookId} />
           ))}
+          <div>
+            <div className={styles.moreButtonBox}>
+              {hasNext && (
+                <button
+                  className={styles.moreButton}
+                  onClick={() => moreDoneBooks()}>
+                  읽은 책 더 불러오기
+                </button>
+              )}
+            </div>
+          </div>
         </ul>
       </div>
       <button className={styles.button}>선택</button>
