@@ -7,12 +7,20 @@ const DoneBooksModal = ({
   setModalOpen,
   hasNext,
   moreDoneBooks,
+  onAddBook,
 }) => {
-  console.log(doneBooks);
   const close = () => {
     setModalOpen(false);
   };
 
+  let selectedBook = null;
+  const onSelectBook = (book) => {
+    selectedBook = book;
+  };
+
+  const onClick = () => {
+    onAddBook(selectedBook);
+  };
   return (
     <div className={styles.container}>
       <button className={styles.close} onClick={close}>
@@ -25,7 +33,11 @@ const DoneBooksModal = ({
       <div className={styles.contents}>
         <ul className={styles.books}>
           {doneBooks.map((doneBook) => (
-            <DoneBooksItem doneBook={doneBook} key={doneBook.memberBookId} />
+            <DoneBooksItem
+              doneBook={doneBook}
+              key={doneBook.memberBookId}
+              onSelectBook={onSelectBook}
+            />
           ))}
           <div>
             <div className={styles.moreButtonBox}>
@@ -40,7 +52,9 @@ const DoneBooksModal = ({
           </div>
         </ul>
       </div>
-      <button className={styles.button}>선택</button>
+      <button className={styles.button} onClick={onClick}>
+        선택
+      </button>
     </div>
   );
 };

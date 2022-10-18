@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import styles from "./doneBooksItem.module.css";
 
-const DoneBooksItem = ({ doneBook, doneBook: { book } }) => {
+const DoneBooksItem = ({ doneBook, doneBook: { book }, onSelectBook }) => {
   const liCheck = useRef();
   const onClick = () => {
     let checkedBook = liCheck.current.children[0];
@@ -16,7 +16,10 @@ const DoneBooksItem = ({ doneBook, doneBook: { book } }) => {
         className={styles.input}
         type="checkbox"
         id={doneBook.memberBookId}></input>
-      <label className={styles.label} htmlFor={doneBook.memberBookId}>
+      <label
+        className={styles.label}
+        htmlFor={doneBook.memberBookId}
+        onClick={() => onSelectBook(doneBook)}>
         <img className={styles.thumbnail} src={book.imageSrc} alt="thumbnail" />
         <span className={styles.title}>
           {book.title.length > 11 ? `${book.title.slice(0, 11)}..` : book.title}

@@ -5,7 +5,7 @@
   flex-direction: row;
   height: 50px;
   border-bottom: solid 1px colorGrey;
-  padding-bottom: 1em;
+  padding: 1em 0 1em 0;
   cursor: pointer;
   color: mainColor;
 }

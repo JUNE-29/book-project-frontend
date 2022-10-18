@@ -99,6 +99,21 @@ class BackendAPI {
     });
     return response.data.content.content.map((item) => ({ ...item }));
   }
+
+  async addReview(review) {
+    const response = await this.request
+      .post(`review`, {
+        memberBookId: review.memberBookId,
+        title: review.title,
+        content: review.content,
+        emoji: review.emoji,
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    return response.status;
+  }
 }
 
 export default BackendAPI;

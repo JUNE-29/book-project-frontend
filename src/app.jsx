@@ -3,6 +3,7 @@ import styles from "./app.module.css";
 import ReadBooks from "./components/readBooks/readBooks";
 import BookDetail from "./routes/bookDetail/bookDetail";
 import BookReview from "./routes/bookReview/bookReview";
+import BookReviewAdd from "./routes/bookReviewAdd/bookReviewAdd";
 import Books from "./routes/books/books";
 import Login from "./routes/login/login";
 import Search from "./routes/search/search";
@@ -27,6 +28,9 @@ function App({ authService, kakaoSearch, backendAPI }) {
           <Route
             path="/bookReview"
             element={<BookReview backendAPI={backendAPI} />}></Route>
+          <Route
+            path="/bookReviewWrite"
+            element={<BookReviewAdd backendAPI={backendAPI} />}></Route>
           <Route
             path="/search"
             element={<Search kakaoSearch={kakaoSearch} />}></Route>

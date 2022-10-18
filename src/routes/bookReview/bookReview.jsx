@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BookReviewList from "../../components/bookReviewList/bookReviewList";
 import DoneBooksModal from "../../components/doneBooksModal/doneBooksModal";
 import Header from "../../components/header/header";
@@ -11,6 +12,19 @@ const BookReview = ({ backendAPI }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [hasNext, setHasNext] = useState(false);
   const [lastPage, setLastPage] = useState(false);
+
+  const navigate = useNavigate();
+  const goToAdd = (selectedBook) => {
+    navigate("/bookReviewWrite", {
+      state: {
+        book: selectedBook,
+      },
+    });
+  };
+  const onAddBook = (selectedBook) => {
+    selectedBook && goToAdd(selectedBook);
+  };
+
   const showModal = () => {
     setModalOpen(true);
   };
@@ -27,7 +41,6 @@ const BookReview = ({ backendAPI }) => {
       setHasNext(book.hasNext);
     });
   };
-  console.log(doneBooks);
 
   useEffect(() => {
     page = 0;
@@ -58,6 +71,7 @@ const BookReview = ({ backendAPI }) => {
               setModalOpen={setModalOpen}
               hasNext={hasNext}
               moreDoneBooks={moreDoneBooks}
+              onAddBook={onAddBook}
             />
           )}
         </div>

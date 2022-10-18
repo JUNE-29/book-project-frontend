@@ -3,7 +3,7 @@
 
 .app {
   width: 100%;
-  height: 100vh;
-  background-color: backGroundColor;
+  /* height: 100vmax; */
+  /* background-color: backGroundColor; */
   font-family: "Noto Sans KR", sans-serif;
 }
