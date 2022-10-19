@@ -17,11 +17,12 @@
   margin-bottom: 1em;
   padding: 1.5em;
   background-color: colorWhite;
-  border-radius: 15px;
   box-shadow: 5px 5px 15px 0px modalShadow;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  border-radius: 15px;
+  border: solid 1px mainColor;
 }
 
 .thumbnail {

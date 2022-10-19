@@ -80,7 +80,6 @@ class BackendAPI {
       .catch((error) => {
         console.log(error);
       });
-
     return response.data.content;
   }
 

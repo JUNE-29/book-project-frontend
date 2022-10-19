@@ -5,7 +5,6 @@ import Rating from "@mui/material/Rating";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Typography from "@mui/material/Typography";
-import { ConstructionOutlined } from "@mui/icons-material";
 
 const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
@@ -61,4 +60,16 @@ function ReadOnlyHeartRate(rate) {
   );
 }
 
-export { HeartRating, ReadOnlyHeartRate };
+function ReadOnlyStarRate(rate) {
+  return (
+    <Rating
+      name="read-only"
+      value={rate.rate}
+      precision={0.5}
+      size="large"
+      readOnly
+    />
+  );
+}
+
+export { HeartRating, ReadOnlyHeartRate, ReadOnlyStarRate };
