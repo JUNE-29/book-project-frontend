@@ -73,10 +73,10 @@ class BackendAPI {
       });
   }
 
-  async getMemberBook(book) {
-    this.book = book;
+  async getMemberBook(memberBookId) {
+    //this.book = book;
     const response = await this.request
-      .get(`memberBook/${book.memberBookId}`)
+      .get(`memberBook/${memberBookId}`)
       .catch((error) => {
         console.log(error);
       });
@@ -97,6 +97,7 @@ class BackendAPI {
     const response = await this.request.get(`review`).catch((error) => {
       console.log(error);
     });
+    console.log(response);
     return response.data.content.content.map((item) => ({ ...item }));
   }
 
@@ -113,6 +114,16 @@ class BackendAPI {
       });
 
     return response.status;
+  }
+
+  async getReviewDetail(reviewId) {
+    const response = await this.request
+      .get(`review/${reviewId}`)
+      .catch((error) => {
+        console.log(error);
+      });
+
+    return response.data.content;
   }
 }
 

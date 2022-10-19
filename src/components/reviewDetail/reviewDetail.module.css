@@ -1,0 +1,39 @@
+@value mainColor, colorWhite, colorDarkGrey, colorLightGreen, modalShadow, colorBlack from '../../common/colors.css';
+
+.contents {
+  max-width: 100%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 1.5em;
+  background-color: colorWhite;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px 0px modalShadow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title {
+  color: mainColor;
+  margin-bottom: 0.5em;
+}
+
+.date {
+  color: colorDarkGrey;
+  font-size: smaller;
+}
+
+.button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: mainColor;
+  font-weight: 600;
+  cursor: pointer;
+}

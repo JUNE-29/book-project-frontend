@@ -17,7 +17,10 @@ const Books = ({ backendAPI, authService }) => {
   const [userToken, setUserToken] = useState(locationState);
 
   const onBookClick = (book) => {
-    backendAPI.getMemberBook(book).then((bookInfo) => goToDetail(bookInfo));
+    const memberBookId = book.memberBookId;
+    backendAPI
+      .getMemberBook(memberBookId)
+      .then((bookInfo) => goToDetail(bookInfo));
   };
 
   const navigate = useNavigate();

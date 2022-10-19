@@ -1,0 +1,60 @@
+@value mainColor, colorWhite, colorDarkGrey, colorLightGreen, modalShadow, colorBlack from '../../common/colors.css';
+
+.contents {
+  max-width: 100%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 1.5em;
+  background-color: colorWhite;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px 0px modalShadow;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.thumbnail {
+  border: solid 1px transparent;
+  border-radius: 1em;
+}
+
+.infoBox {
+  margin-left: 1em;
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 0.3em;
+}
+
+.division {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.myRateBox {
+  margin-top: 1em;
+}
+
+.myRate {
+  margin-bottom: 0;
+}
+
+.myHeartRateBox {
+  display: flex;
+  flex-direction: row;
+}
+
+.myRateNumber {
+  margin-left: 0.5em;
+  color: colorDarkGrey;
+}
+
+.summaryTitle {
+  margin-top: 0.5em;
+  margin-bottom: 0.3em;
+}
+
+.summary {
+  margin-top: 0;
+}

@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./bookReviewItem.module.css";
 
-const BookReviewItem = ({ review }) => {
+const BookReviewItem = ({ review, onReviewClick }) => {
   const { title, createDateTime } = review;
   const bookTitle = review.bookDto.title;
   const emoji = String.fromCodePoint(`0x${review.emoji}`);
   return (
-    <li className={styles.li}>
+    <li className={styles.li} onClick={() => onReviewClick(review)}>
       <div className={styles.emojiBox}>
         <span className={styles.emoji}>{emoji}</span>
       </div>

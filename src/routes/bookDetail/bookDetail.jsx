@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Button from "../../components/button/button";
 import Header from "../../components/header/header";
-import { ReadOnlyHeartRate } from "../../components/rating/rating";
+import MemberBookDetail from "../../components/memberBookDetail/memberBookDetail";
 import SearchBookDetailModal from "../../components/searchBookDetailModal/searchBookDetailModal";
 import styles from "./bookDetail.module.css";
 
@@ -37,27 +37,7 @@ const BookDetail = ({ backendAPI }) => {
     <>
       <Header />
       <div className={styles.container}>
-        <div className={styles.contents}>
-          <div>
-            <img
-              className={styles.thumbnail}
-              src={book.book.imageSrc}
-              alt="thumbnail"></img>
-          </div>
-          <div className={styles.infoBox}>
-            <h3 className={styles.title}>{book.book.title}</h3>
-            <span className={styles.authors}>{book.book.author}</span>
-            <span className={styles.division}> | </span>
-            <span className={styles.publisher}>{book.book.publisher}</span>
-            <span className={styles.division}> | </span>
-            <span className={styles.datetime}>{book.book.publishDate}</span>
-            <div className={styles.rate}>
-              {book.myRate && <ReadOnlyHeartRate rate={book.myRate} />}
-            </div>
-            <h4 className={styles.h4}>책소개</h4>
-            <p className={styles.bookContents}>{book.book.summary}</p>
-          </div>
-        </div>
+        <MemberBookDetail book={book} />
         <div className={styles.buttonBox}>
           {book.bookType === "WILL" && (
             <Button text="읽은 책에 담기" onClick={showModal} />

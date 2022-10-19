@@ -31,7 +31,6 @@ const BookReview = ({ backendAPI }) => {
 
   const DONE = "DONE";
   let page = 0;
-
   const moreDoneBooks = () => {
     ++page;
     backendAPI.ReadMemberBooks(DONE, page).then((book) => {
@@ -39,6 +38,17 @@ const BookReview = ({ backendAPI }) => {
       !lastPage && setDoneBooks((prev) => [...prev, ...newDoneBooks]);
       setLastPage(book.lastPage);
       setHasNext(book.hasNext);
+    });
+  };
+
+  const onReviewClick = (review) => {
+    review && goToDetail(review);
+  };
+  const goToDetail = (review) => {
+    navigate("/bookReviewDetail", {
+      state: {
+        review: review,
+      },
     });
   };
 
@@ -76,7 +86,10 @@ const BookReview = ({ backendAPI }) => {
           )}
         </div>
         <section className={styles.ReviewList}>
-          <BookReviewList reviewList={reviewList} />
+          <BookReviewList
+            reviewList={reviewList}
+            onReviewClick={onReviewClick}
+          />
         </section>
       </div>
     </>
