@@ -1,5 +1,3 @@
-import { ThirtyFpsSelectRounded } from "@mui/icons-material";
-
 class BackendAPI {
   constructor(request) {
     this.request = request;
@@ -21,7 +19,9 @@ class BackendAPI {
       .catch((error) => {
         console.log(error);
       });
-    return response.data.content;
+
+    console.log(response);
+    //return response.data.content;
   }
 
   sendbookData(book) {
@@ -93,11 +93,12 @@ class BackendAPI {
   }
 
   async getReviewList() {
-    const response = await this.request.get(`review`).catch((error) => {
+    const response = await this.request.get(`reviews`).catch((error) => {
       console.log(error);
     });
     console.log(response);
-    return response.data.content.content.map((item) => ({ ...item }));
+    return response.data;
+    //return response.data.map((item) => ({ ...item }));
   }
 
   async addReview(review) {

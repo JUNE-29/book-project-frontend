@@ -2,8 +2,9 @@ import React from "react";
 import styles from "./bookReviewItem.module.css";
 
 const BookReviewItem = ({ review, onReviewClick }) => {
+  console.log(review);
   const { title, createDateTime } = review;
-  const bookTitle = review.bookDto.title;
+  const bookTitle = review.book.title;
   const emoji = String.fromCodePoint(`0x${review.emoji}`);
   return (
     <li className={styles.li} onClick={() => onReviewClick(review)}>

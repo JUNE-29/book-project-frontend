@@ -63,7 +63,7 @@ const BookReview = ({ backendAPI }) => {
 
   useEffect(() => {
     backendAPI.getReviewList().then((data) => {
-      setReviewList(data);
+      setReviewList(data._embedded.reviews);
     });
   }, []);
 
