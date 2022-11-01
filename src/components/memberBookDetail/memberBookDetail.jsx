@@ -6,6 +6,7 @@ import {
 } from "../../components/rating/rating";
 
 const MemberBookDetail = ({ book }) => {
+  console.log(book);
   const totalRate = book.book.totalRate.rate;
   return (
     <div className={styles.contents}>

@@ -10,6 +10,8 @@ const BookDetail = ({ backendAPI }) => {
   const location = useLocation();
   const book = location.state.book;
 
+  console.log(book);
+
   const [modalOpen, setModalOpen] = useState(false);
   const showModal = () => {
     setModalOpen(true);
@@ -22,9 +24,9 @@ const BookDetail = ({ backendAPI }) => {
   };
 
   const DeleteBook = () => {
-    backendAPI
-      .removeMemberBook(book.memberBookId)
-      .then((response) => goToBooks(response.data.msg));
+    // backendAPI
+    //   .removeMemberBook(book.memberBookId)
+    //   .then((response) => goToBooks(response.data.msg));
   };
 
   const navigate = useNavigate();
@@ -39,7 +41,7 @@ const BookDetail = ({ backendAPI }) => {
       <div className={styles.container}>
         <MemberBookDetail book={book} />
         <div className={styles.buttonBox}>
-          {book.bookType === "WILL" && (
+          {book.donDate === null && (
             <Button text="읽은 책에 담기" onClick={showModal} />
           )}
           {modalOpen && (

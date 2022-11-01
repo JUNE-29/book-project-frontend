@@ -4,15 +4,10 @@ class AuthService {
   }
 
   async login(email, password) {
-    await this.httpClient
+    const response = await this.httpClient
       .post("auth/signin", {
         email: `${email}`,
         password: `${password}`,
-      })
-      .then((response) => {
-        if (response.data.token) {
-          localStorage.setItem("ACCESS_TOKEN", response.data.token);
-        }
       })
       .catch((error) => {
         // if (error.status === 403) {
@@ -20,6 +15,9 @@ class AuthService {
         // }
         console.log(error);
       });
+
+    localStorage.setItem("ACCESS_TOKEN", response.data.token);
+    return response.data;
   }
 
   logout() {

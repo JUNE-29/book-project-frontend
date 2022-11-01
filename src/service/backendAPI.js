@@ -1,27 +1,43 @@
 class BackendAPI {
-  constructor(request) {
+  constructor(request, backReq) {
     this.request = request;
+    this.backReq = backReq;
     const book = null;
     const rate = 0;
     const doneDate = null;
     const bookType = null;
   }
 
-  async ReadMemberBooks(type, page) {
+  async ReadMemberBooks(type) {
     const response = await this.request
-      .get("memberBook", {
+      .get("memberBooks", {
         params: {
           bookType: `${type}`,
-          page: page,
-          size: 10,
         },
       })
       .catch((error) => {
         console.log(error);
       });
 
-    console.log(response);
-    //return response.data.content;
+    return response.data;
+  }
+
+  async GetDoneBooks(links) {
+    const response = await this.backReq
+      .get(`${links._memberBooksDone.href}`)
+      .catch((error) => {
+        console.log(error);
+      });
+    return response.data;
+  }
+
+  async GetWillBooks(links) {
+    const response = await this.backReq
+      .get(`${links._memberBooksWill.href}`)
+      .catch((error) => {
+        console.log(error);
+      });
+    return response.data;
   }
 
   sendbookData(book) {

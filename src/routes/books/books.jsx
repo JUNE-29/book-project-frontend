@@ -11,23 +11,41 @@ const Books = ({ backendAPI, authService }) => {
   const [endPage, setEndPage] = useState(false);
   const [totalBooks, setTotalBooks] = useState(0);
   const [hasNext, setHasNext] = useState(false);
+
   const navigater = useNavigate();
   const location = useLocation();
-  const locationState = location?.state?.token;
-  const [userToken, setUserToken] = useState(locationState);
+  const userData = location?.state?.userData;
+  const [userToken, setUserToken] = useState(userData.token);
+  const [links, setLinks] = useState(userData._links);
+
+  useEffect(() => {
+    if (userToken) {
+      setUserToken(userToken);
+      readDoneBooks();
+    } else {
+      navigater("/");
+    }
+  }, [userToken]);
+
+  useEffect(() => {
+    if (links) {
+      setLinks(links);
+    }
+  }, [links]);
 
   const onBookClick = (book) => {
-    const memberBookId = book.memberBookId;
-    backendAPI
-      .getMemberBook(memberBookId)
-      .then((bookInfo) => goToDetail(bookInfo));
+    goToDetail(book);
+    // const memberBookId = book.memberBookId;
+    // backendAPI
+    //   .getMemberBook(memberBookId)
+    //   .then((bookInfo) => goToDetail(bookInfo));
   };
 
   const navigate = useNavigate();
-  const goToDetail = (bookInfo) => {
+  const goToDetail = (book) => {
     navigate("/bookDetail", {
       state: {
-        book: bookInfo,
+        book: book,
       },
     });
   };
@@ -51,60 +69,48 @@ const Books = ({ backendAPI, authService }) => {
   };
 
   const onLogout = () => {
-    authService.logout();
     setUserToken(null);
+    authService.logout();
   };
 
-  const DONE = "DONE";
-  let page = 0;
   const readDoneBooks = () => {
-    page = 0;
-    backendAPI.ReadMemberBooks(DONE, page).then((data) => {
-      setBookList(data.content.map((item) => ({ ...item })));
-      setEndPage(data.lastPage);
-      setTotalBooks(data.totalElements);
-      setHasNext(data.hasNext);
+    backendAPI.GetDoneBooks(links).then((data) => {
+      setBookList(data._embedded.memberBooks.map((item) => ({ ...item })));
+      console.log(data);
+      setTotalBooks(data.page.totalElements);
+      // setEndPage(data.lastPage);
+      // setHasNext(data.hasNext);
     });
   };
 
-  const moreReadDoneBooks = () => {
-    ++page;
-    backendAPI.ReadMemberBooks(DONE, page).then((data) => {
-      const newBookList = data.content.map((item) => ({ ...item }));
-      !endPage && setBookList((prev) => [...prev, ...newBookList]);
-      setEndPage(data.lastPage);
-      setHasNext(data.hasNext);
-    });
-  };
+  // const moreReadDoneBooks = () => {
+  //   ++page;
+  //   backendAPI.ReadMemberBooks(DONE, page).then((data) => {
+  //     const newBookList = data.content.map((item) => ({ ...item }));
+  //     !endPage && setBookList((prev) => [...prev, ...newBookList]);
+  //     setEndPage(data.lastPage);
+  //     setHasNext(data.hasNext);
+  //   });
+  // };
 
-  const WILL = "WILL";
   const readWillBooks = () => {
-    backendAPI.ReadMemberBooks(WILL).then((data) => {
-      setBookList(data.content.map((item) => ({ ...item })));
-      setEndPage(data.lastPage);
-      setTotalBooks(data.totalElements);
-      setHasNext(data.hasNext);
+    backendAPI.GetWillBooks(links).then((data) => {
+      setBookList(data._embedded.memberBooks.map((item) => ({ ...item })));
+      setTotalBooks(data.page.totalElements);
+      // setEndPage(data.lastPage);
+      // setHasNext(data.hasNext);
     });
   };
 
-  const moreReadWillBooks = () => {
-    ++page;
-    backendAPI.ReadMemberBooks(WILL, page).then((data) => {
-      const newBookList = data.content.map((item) => ({ ...item }));
-      !endPage && setBookList((prev) => [...prev, ...newBookList]);
-      setEndPage(data.lastPage);
-      setHasNext(data.hasNext);
-    });
-  };
-
-  useEffect(() => {
-    if (userToken) {
-      setUserToken(userToken);
-      readDoneBooks();
-    } else {
-      navigater("/");
-    }
-  }, [userToken]);
+  // const moreReadWillBooks = () => {
+  //   ++page;
+  //   backendAPI.ReadMemberBooks(WILL, page).then((data) => {
+  //     const newBookList = data.content.map((item) => ({ ...item }));
+  //     !endPage && setBookList((prev) => [...prev, ...newBookList]);
+  //     setEndPage(data.lastPage);
+  //     setHasNext(data.hasNext);
+  //   });
+  // };
 
   return (
     <>
@@ -125,11 +131,11 @@ const Books = ({ backendAPI, authService }) => {
               bookList={bookList}
               onBookClick={onBookClick}
             />
-            {hasNext && (
+            {/* {hasNext && (
               <button className={styles.button} onClick={moreReadDoneBooks}>
                 더 불러오기
               </button>
-            )}
+            )} */}
           </div>
         </div>
         <div className={styles.bookBasket} ref={bookBasket}>
@@ -139,11 +145,11 @@ const Books = ({ backendAPI, authService }) => {
               bookList={bookList}
               onBookClick={onBookClick}
             />
-            {hasNext && (
+            {/* {hasNext && (
               <button className={styles.button} onClick={moreReadWillBooks}>
                 더 불러오기
               </button>
-            )}
+            )} */}
           </div>
         </div>
       </section>

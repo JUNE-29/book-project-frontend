@@ -17,6 +17,12 @@ const request = axios.create({
   },
 });
 
+const backReq = axios.create({
+  headers: {
+    Authorization: `Bearer ` + `${accessToken}`,
+  },
+});
+
 const kakaoClient = axios.create({
   baseURL: "https://dapi.kakao.com/v3",
   headers: {
@@ -28,7 +34,7 @@ const httpClient = axios.create({
 });
 const kakaoSearch = new Kakao(kakaoClient);
 const authService = new AuthService(httpClient);
-const backendAPI = new BackendAPI(request);
+const backendAPI = new BackendAPI(request, backReq);
 root.render(
   <React.StrictMode>
     <App

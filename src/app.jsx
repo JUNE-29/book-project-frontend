@@ -10,6 +10,7 @@ import Login from "./routes/login/login";
 import Search from "./routes/search/search";
 import SearchBookDetail from "./routes/searchBookDetail/searchBookDetail";
 import Signup from "./routes/signup/signup";
+import Transcription from "./routes/transcription/transcription";
 
 function App({ authService, kakaoSearch, backendAPI }) {
   return (
@@ -35,6 +36,9 @@ function App({ authService, kakaoSearch, backendAPI }) {
           <Route
             path="/bookReviewDetail"
             element={<BookReviewDetail backendAPI={backendAPI} />}></Route>
+          <Route
+            path="/transcription"
+            element={<Transcription backendAPI={backendAPI} />}></Route>
           <Route
             path="/search"
             element={<Search kakaoSearch={kakaoSearch} />}></Route>

@@ -1,0 +1,22 @@
+@value mainColor, colorWhite, colorGrey from '../../common/colors.css';
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 45px;
+}
+
+.buttonBox {
+  text-align: right;
+  margin-right: 5em;
+}
+
+.button {
+  color: mainColor;
+  background-color: colorWhite;
+  border: 1px solid mainColor;
+  font-weight: 700;
+  padding: 0.5em 1em 0.5em 1em;
+  border-radius: 3em;
+  cursor: pointer;
+}

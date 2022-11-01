@@ -12,26 +12,32 @@ const Login = ({ authService }) => {
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    authService.login(email, password).then(() => checkToken());
-  };
-
-  const navigate = useNavigate();
-  const goToBook = (userToken) => {
-    navigate("/books", {
-      state: { token: userToken },
+    authService.login(email, password).then((data) => {
+      goToBook(data);
+      //checkToken();
     });
   };
 
-  useEffect(() => {
-    checkToken();
-  });
-
-  const checkToken = () => {
-    const accessToken = localStorage.getItem("ACCESS_TOKEN");
-    if (accessToken && accessToken !== null) {
-      goToBook(accessToken);
-    }
+  const navigate = useNavigate();
+  const goToBook = (userData) => {
+    console.log(userData);
+    navigate("/books", {
+      state: {
+        userData: userData,
+      },
+    });
   };
+
+  // useEffect(() => {
+  //   checkToken();
+  // });
+
+  // const checkToken = () => {
+  //   const accessToken = localStorage.getItem("ACCESS_TOKEN");
+  //   if (accessToken && accessToken !== null) {
+  //     goToBook(accessToken);
+  //   }
+  // };
 
   return (
     <section className={styles.main}>
