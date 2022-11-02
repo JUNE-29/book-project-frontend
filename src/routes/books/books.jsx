@@ -10,7 +10,6 @@ const Books = ({ backendAPI, authService }) => {
   const [bookList, setBookList] = useState([]);
   const [endPage, setEndPage] = useState(false);
   const [totalBooks, setTotalBooks] = useState(0);
-  const [hasNext, setHasNext] = useState(false);
 
   const navigater = useNavigate();
   const location = useLocation();
@@ -78,27 +77,26 @@ const Books = ({ backendAPI, authService }) => {
       setBookList(data._embedded.memberBooks.map((item) => ({ ...item })));
       console.log(data);
       setTotalBooks(data.page.totalElements);
-      // setEndPage(data.lastPage);
-      // setHasNext(data.hasNext);
+      setLinks(data._links);
+      setEndPage(data.page.number + 1 === data.page.totalPages);
     });
   };
 
-  // const moreReadDoneBooks = () => {
-  //   ++page;
-  //   backendAPI.ReadMemberBooks(DONE, page).then((data) => {
-  //     const newBookList = data.content.map((item) => ({ ...item }));
-  //     !endPage && setBookList((prev) => [...prev, ...newBookList]);
-  //     setEndPage(data.lastPage);
-  //     setHasNext(data.hasNext);
-  //   });
-  // };
+  const moreReadDoneBooks = () => {
+    backendAPI.MoreDoneBooks(links).then((data) => {
+      const newBookList = data._embedded.memberBooks.map((item) => ({
+        ...item,
+      }));
+      !endPage && setBookList((prev) => [...prev, ...newBookList]);
+      setEndPage(data.page.number + 1 === data.page.totalPages);
+    });
+  };
 
   const readWillBooks = () => {
     backendAPI.GetWillBooks(links).then((data) => {
       setBookList(data._embedded.memberBooks.map((item) => ({ ...item })));
       setTotalBooks(data.page.totalElements);
       // setEndPage(data.lastPage);
-      // setHasNext(data.hasNext);
     });
   };
 
@@ -108,7 +106,6 @@ const Books = ({ backendAPI, authService }) => {
   //     const newBookList = data.content.map((item) => ({ ...item }));
   //     !endPage && setBookList((prev) => [...prev, ...newBookList]);
   //     setEndPage(data.lastPage);
-  //     setHasNext(data.hasNext);
   //   });
   // };
 
@@ -131,11 +128,11 @@ const Books = ({ backendAPI, authService }) => {
               bookList={bookList}
               onBookClick={onBookClick}
             />
-            {/* {hasNext && (
+            {!endPage && (
               <button className={styles.button} onClick={moreReadDoneBooks}>
                 더 불러오기
               </button>
-            )} */}
+            )}
           </div>
         </div>
         <div className={styles.bookBasket} ref={bookBasket}>
@@ -145,7 +142,7 @@ const Books = ({ backendAPI, authService }) => {
               bookList={bookList}
               onBookClick={onBookClick}
             />
-            {/* {hasNext && (
+            {/* (
               <button className={styles.button} onClick={moreReadWillBooks}>
                 더 불러오기
               </button>
