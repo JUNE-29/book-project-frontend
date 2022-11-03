@@ -10,8 +10,6 @@ const BookDetail = ({ backendAPI }) => {
   const location = useLocation();
   const book = location.state.book;
 
-  console.log(book);
-
   const [modalOpen, setModalOpen] = useState(false);
   const showModal = () => {
     setModalOpen(true);

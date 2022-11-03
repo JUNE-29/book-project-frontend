@@ -32,6 +32,7 @@ class BackendAPI {
   }
 
   async MoreDoneBooks(links) {
+    console.log(links);
     const response = await this.backReq
       .get(`${links.next.href}`)
       .catch((error) => {
@@ -42,7 +43,16 @@ class BackendAPI {
 
   async GetWillBooks(links) {
     const response = await this.backReq
-      .get(`${links._memberBooksWill.href}`)
+      .get(`${links._memberBooksWill.href}&size=3`)
+      .catch((error) => {
+        console.log(error);
+      });
+    return response.data;
+  }
+
+  async DetailBook(links) {
+    const response = await this.backReq
+      .get(`${links.detail.href}`)
       .catch((error) => {
         console.log(error);
       });

@@ -7,7 +7,8 @@ import ReadBooks from "../../components/readBooks/readBooks";
 import styles from "./books.module.css";
 
 const Books = ({ backendAPI, authService }) => {
-  const [bookList, setBookList] = useState([]);
+  const [doneBookList, setDoneBookList] = useState([]);
+  const [willBookList, setWillBookList] = useState([]);
   const [endPage, setEndPage] = useState(false);
   const [totalBooks, setTotalBooks] = useState(0);
 
@@ -33,11 +34,7 @@ const Books = ({ backendAPI, authService }) => {
   }, [links]);
 
   const onBookClick = (book) => {
-    goToDetail(book);
-    // const memberBookId = book.memberBookId;
-    // backendAPI
-    //   .getMemberBook(memberBookId)
-    //   .then((bookInfo) => goToDetail(bookInfo));
+    backendAPI.DetailBook(book._links).then((bookInfo) => goToDetail(bookInfo));
   };
 
   const navigate = useNavigate();
@@ -74,8 +71,7 @@ const Books = ({ backendAPI, authService }) => {
 
   const readDoneBooks = () => {
     backendAPI.GetDoneBooks(links).then((data) => {
-      setBookList(data._embedded.memberBooks.map((item) => ({ ...item })));
-      console.log(data);
+      setDoneBookList(data._embedded.memberBooks.map((item) => ({ ...item })));
       setTotalBooks(data.page.totalElements);
       setLinks(data._links);
       setEndPage(data.page.number + 1 === data.page.totalPages);
@@ -87,27 +83,31 @@ const Books = ({ backendAPI, authService }) => {
       const newBookList = data._embedded.memberBooks.map((item) => ({
         ...item,
       }));
-      !endPage && setBookList((prev) => [...prev, ...newBookList]);
+      !endPage && setDoneBookList((prev) => [...prev, ...newBookList]);
       setEndPage(data.page.number + 1 === data.page.totalPages);
     });
   };
 
   const readWillBooks = () => {
     backendAPI.GetWillBooks(links).then((data) => {
-      setBookList(data._embedded.memberBooks.map((item) => ({ ...item })));
+      console.log(data);
+      setWillBookList(data._embedded.memberBooks.map((item) => ({ ...item })));
       setTotalBooks(data.page.totalElements);
-      // setEndPage(data.lastPage);
+      setLinks(data._links);
+      setEndPage(data.page.number + 1 === data.page.totalPages);
     });
   };
 
-  // const moreReadWillBooks = () => {
-  //   ++page;
-  //   backendAPI.ReadMemberBooks(WILL, page).then((data) => {
-  //     const newBookList = data.content.map((item) => ({ ...item }));
-  //     !endPage && setBookList((prev) => [...prev, ...newBookList]);
-  //     setEndPage(data.lastPage);
-  //   });
-  // };
+  const moreReadWillBooks = () => {
+    backendAPI.MoreDoneBooks(links).then((data) => {
+      const newBookList = data._embedded.memberBooks.map((item) => ({
+        ...item,
+      }));
+      !endPage && setWillBookList((prev) => [...prev, ...newBookList]);
+      setEndPage(data.page.number + 1 === data.page.totalPages);
+      console.log(endPage);
+    });
+  };
 
   return (
     <>
@@ -125,7 +125,7 @@ const Books = ({ backendAPI, authService }) => {
           <div className={styles.readBooksBox}>
             <ReadBooks
               totalBooks={totalBooks}
-              bookList={bookList}
+              bookList={doneBookList}
               onBookClick={onBookClick}
             />
             {!endPage && (
@@ -139,14 +139,14 @@ const Books = ({ backendAPI, authService }) => {
           <div className={styles.bookBasketBox}>
             <BookBasket
               totalBooks={totalBooks}
-              bookList={bookList}
+              bookList={willBookList}
               onBookClick={onBookClick}
             />
-            {/* (
+            {!endPage && (
               <button className={styles.button} onClick={moreReadWillBooks}>
                 더 불러오기
               </button>
-            )} */}
+            )}
           </div>
         </div>
       </section>
