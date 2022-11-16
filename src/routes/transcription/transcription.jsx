@@ -12,7 +12,6 @@ const Transcription = (props) => {
 
   return (
     <>
-      <Header />
       <div className={styles.container}>
         <div className={styles.buttonBox}>
           <button className={styles.button} onClick={showModal}>

@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import Navbar from "../navbar/navbar";
 import styles from "./header.module.css";
 
-const Header = ({ onLogout }) => {
+const Header = ({ authService }) => {
   const downBox = useRef();
   let userNameBtnToggle = true;
   const onClick = () => {
@@ -13,6 +13,10 @@ const Header = ({ onLogout }) => {
       downBox.current.style.display = "none";
       userNameBtnToggle = true;
     }
+  };
+
+  const onLogout = () => {
+    authService.logout();
   };
 
   return (

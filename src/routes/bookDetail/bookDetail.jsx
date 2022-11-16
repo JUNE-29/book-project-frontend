@@ -35,7 +35,6 @@ const BookDetail = ({ backendAPI }) => {
 
   return (
     <>
-      <Header />
       <div className={styles.container}>
         <MemberBookDetail book={book} />
         <div className={styles.buttonBox}>

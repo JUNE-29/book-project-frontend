@@ -26,7 +26,6 @@ const SearchBookDetail = ({ backendAPI }) => {
 
   return (
     <>
-      <Header />
       <div className={styles.container}>
         <h3 className={styles.h3}>책 정보 자세히보기</h3>
         <div className={styles.contents}>

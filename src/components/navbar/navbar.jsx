@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./navbar.module.css";
 
-const Navbar = (props) => {
+const Navbar = (links) => {
+  console.log(links);
   return (
     <nav className={styles.nav}>
       <Link to="/books" className={styles.menu}>
         서적
       </Link>
-      <Link to="/bookReview" className={styles.menu}>
+      <Link to="/bookReview" links={links} className={styles.menu}>
         감상문
       </Link>
       <Link to="/transcription" className={styles.menu}>

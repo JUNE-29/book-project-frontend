@@ -13,31 +13,31 @@ const Login = ({ authService }) => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     authService.login(email, password).then((data) => {
-      goToBook(data);
-      //checkToken();
+      checkUserData(data);
     });
   };
 
   const navigate = useNavigate();
   const goToBook = (userData) => {
-    console.log(userData);
     navigate("/books", {
       state: {
-        userData: userData,
+        userData: {
+          token: userData.token,
+          links: userData._links,
+        },
       },
     });
   };
 
-  // useEffect(() => {
-  //   checkToken();
-  // });
+  useEffect(() => {
+    checkUserData();
+  });
 
-  // const checkToken = () => {
-  //   const accessToken = localStorage.getItem("ACCESS_TOKEN");
-  //   if (accessToken && accessToken !== null) {
-  //     goToBook(accessToken);
-  //   }
-  // };
+  const checkUserData = (userData) => {
+    if (userData && userData !== null) {
+      goToBook(userData);
+    }
+  };
 
   return (
     <section className={styles.main}>

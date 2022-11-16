@@ -6,13 +6,14 @@ import DoneBooksModal from "../../components/doneBooksModal/doneBooksModal";
 import Header from "../../components/header/header";
 import styles from "./bookReview.module.css";
 
-const BookReview = ({ backendAPI }) => {
+const BookReview = ({ backendAPI, links }) => {
   const [reviewList, setReviewList] = useState([]);
   const [doneBooks, setDoneBooks] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [hasNext, setHasNext] = useState(false);
   const [lastPage, setLastPage] = useState(false);
 
+  console.log(links);
   const navigate = useNavigate();
   const goToAdd = (selectedBook) => {
     navigate("/bookReviewWrite", {
@@ -54,22 +55,21 @@ const BookReview = ({ backendAPI }) => {
 
   useEffect(() => {
     page = 0;
-    backendAPI.ReadMemberBooks(DONE, page).then((book) => {
-      setDoneBooks(book.content.map((item) => ({ ...item })));
-      setLastPage(book.lastPage);
-      setHasNext(book.hasNext);
-    });
+    // backendAPI.ReadMemberBooks(DONE, page).then((book) => {
+    //   setDoneBooks(book.content.map((item) => ({ ...item })));
+    //   setLastPage(book.lastPage);
+    //   setHasNext(book.hasNext);
+    // });
   }, []);
 
   useEffect(() => {
-    backendAPI.getReviewList().then((data) => {
-      setReviewList(data._embedded.reviews);
-    });
+    // backendAPI.getReviewList().then((data) => {
+    //   setReviewList(data._embedded.reviews);
+    // });
   }, []);
 
   return (
     <>
-      <Header />
       <div className={styles.container}>
         <div className={styles.buttonBox}>
           <button className={styles.button} onClick={showModal}>

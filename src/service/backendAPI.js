@@ -6,6 +6,7 @@ class BackendAPI {
     const rate = 0;
     const doneDate = null;
     const bookType = null;
+    const links = null;
   }
 
   async ReadMemberBooks(type) {
@@ -23,6 +24,7 @@ class BackendAPI {
   }
 
   async GetDoneBooks(links) {
+    links = links;
     const response = await this.backReq
       .get(`${links._memberBooksDone.href}`)
       .catch((error) => {

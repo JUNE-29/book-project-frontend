@@ -29,7 +29,6 @@ const BookReviewDetail = ({ backendAPI }) => {
 
   return (
     <>
-      <Header />
       <div className={styles.container}>
         <section>{book && <MemberBookDetail book={book} />}</section>
         <section>

@@ -80,7 +80,6 @@ const Search = ({ kakaoSearch }) => {
 
   return (
     <>
-      <Header />
       <div className={styles.search}>
         <input
           className={styles.input}

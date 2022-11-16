@@ -15,11 +15,14 @@ const Books = ({ backendAPI, authService }) => {
   const navigater = useNavigate();
   const location = useLocation();
   const userData = location?.state?.userData;
-  const [userToken, setUserToken] = useState(userData.token);
-  const [links, setLinks] = useState(userData._links);
-
+  const [userToken, setUserToken] = useState(userData && userData.token);
+  const [links, setLinks] = useState(userData && userData.links);
+  console.log(links);
   useEffect(() => {
     if (userToken) {
+      setUserToken(userToken);
+      readDoneBooks();
+    } else if (localStorage.getItem("ACCESS_TOKEN")) {
       setUserToken(userToken);
       readDoneBooks();
     } else {
@@ -64,18 +67,13 @@ const Books = ({ backendAPI, authService }) => {
     );
   };
 
-  const onLogout = () => {
-    setUserToken(null);
-    authService.logout();
-  };
-
   const readDoneBooks = () => {
-    backendAPI.GetDoneBooks(links).then((data) => {
-      setDoneBookList(data._embedded.memberBooks.map((item) => ({ ...item })));
-      setTotalBooks(data.page.totalElements);
-      setLinks(data._links);
-      setEndPage(data.page.number + 1 === data.page.totalPages);
-    });
+    // backendAPI.GetDoneBooks(links).then((data) => {
+    //   setDoneBookList(data._embedded.memberBooks.map((item) => ({ ...item })));
+    //   setTotalBooks(data.page.totalElements);
+    //   setLinks(data._links);
+    //   setEndPage(data.page.number + 1 === data.page.totalPages);
+    // });
   };
 
   const moreReadDoneBooks = () => {
@@ -89,13 +87,13 @@ const Books = ({ backendAPI, authService }) => {
   };
 
   const readWillBooks = () => {
-    backendAPI.GetWillBooks(links).then((data) => {
-      console.log(data);
-      setWillBookList(data._embedded.memberBooks.map((item) => ({ ...item })));
-      setTotalBooks(data.page.totalElements);
-      setLinks(data._links);
-      setEndPage(data.page.number + 1 === data.page.totalPages);
-    });
+    // backendAPI.GetWillBooks(links).then((data) => {
+    //   console.log(data);
+    //   setWillBookList(data._embedded.memberBooks.map((item) => ({ ...item })));
+    //   setTotalBooks(data.page.totalElements);
+    //   setLinks(data._links);
+    //   setEndPage(data.page.number + 1 === data.page.totalPages);
+    // });
   };
 
   const moreReadWillBooks = () => {
@@ -111,7 +109,6 @@ const Books = ({ backendAPI, authService }) => {
 
   return (
     <>
-      <Header onLogout={onLogout} />
       <section className={styles.books}>
         <div className={styles.header}>
           <span className={styles.menu} onClick={onShowReadbooks}>
